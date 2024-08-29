@@ -1,0 +1,33 @@
+<div>
+  <h1 class="heading">Workout</h1>
+  <%= form_for @workout, data: { turbo: false, controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |workout_form| %>
+    <%= workout_form.hidden_field :id, value: workout_form.object.id %>
+
+    <div class="flex flex-column border-bottom mb-16">
+      <%= workout_form.text_field :style, value: workout_form.object.style, placeholder: 'Style' %>
+    </div>
+
+    <div>
+      <h3>Lifts</h3>
+
+      <template data-nested-form-target="liftTemplate">
+        <%= workout_form.fields_for :workout_lifts, workout_form.object.workout_lifts.first, child_index: 'NEW_RECORD' do |workout_lift_form| %>
+          <%= render "workout_lifts/form", form: workout_lift_form %>
+        <% end %>
+      </template>
+
+      <div id='lifts'>
+        <%= workout_form.fields_for :workout_lifts do |workout_lifts_form| %>
+          <%= render partial: 'workout_lifts/form', locals: { form: workout_lifts_form } %>
+        <% end %>
+      </div>
+      <div>
+        <button class="button" type="button" data-action="nested-form#addLift">Add Lift</button>
+      </div>
+    </div>
+
+    <div>
+      <%= workout_form.submit 'Save', class: 'button float-right' %>
+    </div>
+  <% end %>
+</div>

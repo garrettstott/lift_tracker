@@ -1,0 +1,69 @@
+form {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  input.reps-super-set {
+    background: $blue;
+    border: 1px solid $blue;
+    color: $black;
+  }
+}
+input,
+textarea,
+select, {
+  background: $black;
+  color: $blue;
+  border: 1px solid $blue;
+  border-radius: 5px;
+  padding: 6px;
+  margin-bottom: 16px;
+  outline: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: $blue;
+  transition: background-color 5000s ease-in-out 0s;
+  box-shadow: inset 0 0 20px 20px $black;
+}
+
+input[type='submit'] {
+  cursor: pointer;
+}
+
+form {
+  .xs-input {
+    margin: 0;
+    max-width: 30px;
+    text-align: center;
+  }
+}
+
+.devise {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  .links {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  h2 {
+    text-align: center;
+  }
+  form {
+    width: 100%;
+    max-width: 400px;
+    input {
+      width: calc(100% - 12px);
+    }
+    input[type='checkbox'], input[type='submit'] {
+      width: auto;
+    }
+  }
+}

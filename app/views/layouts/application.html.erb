@@ -18,6 +18,12 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div id="wrapper">
+      <%= render partial: 'shared/navbar' %>
+      <%= render partial: 'shared/flash_messages' %>
+      <div class="pt-16">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

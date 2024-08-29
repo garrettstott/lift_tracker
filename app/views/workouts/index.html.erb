@@ -1,0 +1,45 @@
+<div class="container">
+  <h1 class="heading">Workouts</h1>
+  <div class="mb-16">
+    <div class="mb-16">
+      <div>
+        Last 7 Days <%= Workout.last_7_days.size %>
+      </div>
+      <div>
+        Last 30 Days <%= Workout.last_30_days.size %>
+      </div>
+    </div>
+    <div class="mx-8">
+      <%= link_to "Start #{@next_workout.style.titleize}", new_workout_path, class: 'button' %>
+      <%= link_to "Start Workout", new_workout_path, class: 'button' %>
+    </div>
+  </div>
+  <div>
+    <% @workouts.each do |workout| %>
+      <div class="card mb-16">
+        <div class="card-header">
+          <%= link_to workout.style.titleize, edit_workout_path(workout) %>
+          <%= workout.nice_completed_at %>
+        </div>
+        <div class="card-body">
+          <% workout.workout_lifts.each do |workout_lift| %>
+            <div class="mb-4 flex space-between mb-8">
+              <div class="flex">
+                <div class="margin-auto-y"><%= workout_lift.lift.name.titleize %></div>
+              </div>
+              <div class="flex space-between">
+                <% workout_lift.lift_sets.each do |lift_set| %>
+                  <%= render partial: 'lift_sets/show', locals: { lift_set: lift_set } %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="card-footer">
+          <%= link_to 'Edit', edit_workout_path(workout), class: 'button' %>
+          <%= link_to "Start #{workout.style.titleize}", new_workout_path, class: 'button' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

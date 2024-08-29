@@ -1,0 +1,24 @@
+#flash-messages {
+  margin: 0 -6px;
+  padding: 6px;
+}
+
+.flash {
+  background: $pink;
+  color: $white;
+}
+
+.flash.success {
+  background: lime;
+  color: $black;
+}
+
+.flash.error {
+  background: red;
+  color: $black;
+}
+
+.flash.notice {
+  background: $pink;
+  color: $black;
+}

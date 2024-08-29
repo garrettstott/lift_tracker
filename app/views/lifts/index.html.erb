@@ -1,0 +1,11 @@
+<div class="container">
+  <h1 class="heading">Lifts</h1>
+  <%= render partial: 'form' %>
+  <div>
+    <% @lifts.each do |lift| %>
+      <div class="mb-16">
+        <%= link_to lift.name, edit_lift_path(lift) %>
+      </div>
+    <% end %>
+  </div>
+</div>

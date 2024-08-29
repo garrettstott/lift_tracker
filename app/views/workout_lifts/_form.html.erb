@@ -1,0 +1,44 @@
+<div class="workout-lift border-bottom mb-32 pb-32">
+  <%= form.hidden_field :id, value: form.object.id %>
+  <%= form.hidden_field :workout_id, value: form.object.workout_id %>
+
+  <div class="flex flex-column">
+    <%= form.select :lift_id, Lift.all.pluck(:name, :id), selected: form.object.lift_id, prompt: 'Select Lift' %>
+  </div>
+
+  <template data-nested-form-target="setTemplate">
+    <%= form.fields_for :lift_sets, form.object.lift_sets.first, child_index: 'NEW_RECORD' do |lift_set_form| %>
+      <%= render partial: 'lift_sets/form', locals: { form: lift_set_form } %>
+    <% end %>
+  </template>
+
+  <% if @last_workout %>
+    <div class="flex mb-16">
+      <div class="flex flex-1 flex-column space-around me-8">
+        <h5>Last</h5>
+        <h5>Lift</h5>
+      </div>
+      <div class="flex flex-4">
+        <% @last_workout.workout_lifts.find_by(lift_id: form.object.lift_id).lift_sets.each do |last_lift_set| %>
+          <%= render partial: 'lift_sets/show', locals: { lift_set: last_lift_set } %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="flex mb-16">
+    <div class="flex flex-1 flex-column space-around me-8">
+      <h5>Weight</h5>
+      <h5>Reps</h5>
+    </div>
+    <div id="<%= form.options[:child_index] %>-lift-sets" class="flex flex-4">
+      <%= form.fields_for :lift_sets do |lift_sets_form| %>
+        <%= render partial: 'lift_sets/form', locals: { form: lift_sets_form } %>
+      <% end %>
+    </div>
+  </div>
+  <div>
+    <button class="button" type="button" value="<%= form.options[:child_index] %>" data-action="nested-form#addSet">Add Set</button>
+    <button class="button" type="button" value="<%= form.options[:child_index] %>" data-action="nested-form#addSuperSet">Add Super Set</button>
+  </div>
+</div>

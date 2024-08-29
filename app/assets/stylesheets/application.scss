@@ -1,0 +1,54 @@
+@import 'colors';
+@import 'normalize';
+@import 'typography';
+@import 'navbar';
+@import 'forms';
+@import 'cards';
+@import 'spacing';
+@import 'flex';
+@import 'buttons';
+@import 'flash';
+
+.reps-super-set {
+  background: $pink;
+  color: $white;
+  border: 1px solid $pink;
+}
+
+body {
+  background: $black;
+  color: $white;
+  margin-top: 37px;
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: $pink;
+}
+
+.display-inline-block {
+  display: inline-block;
+}
+
+.border-highlight {
+  border: 1px solid $pink;
+}
+
+.border-bottom {
+  border-bottom: 4px solid $pink;
+}
+
+.float-right {
+  float: right;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.container {
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
