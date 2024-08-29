@@ -14,7 +14,10 @@ class LiftsController < ApplicationController
   end
 
   def create
-
+    lift = Lift.new(lift_params)
+    lift.save
+    redirect_to lifts_path
+    end
   end
 
   def destroy
