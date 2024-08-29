@@ -5,6 +5,7 @@
 
     <div class="flex flex-column border-bottom mb-16">
       <%= workout_form.text_field :style, value: workout_form.object.style, placeholder: 'Style' %>
+      <%= workout_form.date_field :completed_at, value: (workout_form.object.completed_at|| DateTime.now) %>
     </div>
 
     <div>
