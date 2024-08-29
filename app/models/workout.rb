@@ -50,7 +50,7 @@ class Workout < ApplicationRecord
       return Workout.create(style: WORKOUT_DEFAULT_STYLES.first) if last_workout.nil?
       last_index = WORKOUT_DEFAULT_STYLES.find_index(last_workout.style)
       next_style = WORKOUT_DEFAULT_STYLES[last_index + 1] || WORKOUT_DEFAULT_STYLES.first
-      Workout.where(style: next_style).last.dup || Workout.create(style: style)
+      Workout.where(style: next_style).last.dup || Workout.new(style: next_style)
     end
   end
 
