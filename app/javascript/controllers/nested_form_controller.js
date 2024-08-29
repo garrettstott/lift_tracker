@@ -12,6 +12,17 @@ export default class extends Controller {
     let clone = document.importNode(this.liftTemplateTarget.content,true);
     let lifts = document.getElementsByClassName('workout-lift');
     let div = clone.querySelector('div')
+    let liftSetsDiv = div.querySelector('#NEW_RECORD-lift-sets')
+
+    liftSetsDiv.setAttribute('id', `${lifts.length}-lift-sets`)
+    let buttons = div.querySelectorAll('.button')
+
+    for(let i=0; i<buttons.length; i++) {
+      console.log(buttons[i].value)
+      buttons[i].setAttribute('value', lifts.length)
+      console.log(buttons[i].value)
+    }
+
     for(let i=0; i<div.querySelectorAll('input').length; i++) {
       let input = div.querySelectorAll('input')[i]
       input.setAttribute('name', input.name.replace('NEW_RECORD', lifts.length));
@@ -28,11 +39,13 @@ export default class extends Controller {
   }
 
   appendSet(e, style) {
+    console.log(e.target.value)
+    let liftSetsDiv = document.getElementById(`${e.target.value}-lift-sets`)
     let clone = document.importNode(this.setTemplateTarget.content,true)
     let div = clone.querySelector('div')
-    let liftsDiv = document.getElementById(`${e.target.value}-lift-sets`)
-    let sets = liftsDiv.getElementsByClassName(`lift-set`)
+    let sets = liftSetsDiv.getElementsByClassName(`lift-set`)
     let inputs = div.querySelectorAll('input')
+
     for(let i=0; i<inputs.length; i++) {
       let input = inputs[i]
       let value = '';
@@ -54,6 +67,6 @@ export default class extends Controller {
         input.value = ''
       }
     }
-    liftsDiv.appendChild(div);
+    liftSetsDiv.appendChild(div);
   }
 }
