@@ -2,15 +2,19 @@ class LiftsController < ApplicationController
 
   def index
     @lifts = Lift.all
+    @lift = Lift.new
   end
 
   def show
   end
 
   def edit
+    @lift = Lift.find(params[:id])
   end
 
   def update
+    Lift.find(params[:id]).update(lift_params)
+    redirect_to lifts_path
   end
 
   def create

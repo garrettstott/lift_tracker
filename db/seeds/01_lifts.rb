@@ -1,7 +1,7 @@
 names = [
   # CHEST
   'Bench Press',
-  'DB Incline Press',
+  'DB Incline Bench Press',
   'DB Bench Press',
   'BB Incline Press',
   # LEGS
@@ -11,14 +11,15 @@ names = [
   'Kettle Bell Squat',
   # ARMS
   'BB Curl',
-  'EZ Bar Extension',
+  'EZ Bar Arm Extension',
   'DB Curl',
   'Cable Arm Extension',
+  'Cable Single Arm Extension',
   'BB Arm Extension',
   # BACK
-  'Deadlift',
+  'Dead Lift',
   'Bent Over Row',
-  'Cable Lat Pulldown',
+  'Cable Lat Pull Down',
   'Cable Row'
 ]
 names.each do |name|

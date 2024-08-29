@@ -1,8 +1,8 @@
 <div>
-  <%= form_for Lift.new do |form|  %>
+  <%= form_for @lift do |form|  %>
     <div class="flex">
       <%= form.text_field :name, required: true, class: 'me-4 flex-2' %>
-      <%= form.submit 'Add' %>
+      <%= form.submit @lift.id ? 'Save' : 'Add' %>
     </div>
   <% end %>
 </div>
