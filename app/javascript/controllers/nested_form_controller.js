@@ -29,11 +29,31 @@ export default class extends Controller {
       buttons[i].setAttribute('value', index)
     }
 
+    // SET NEW ATTRIBUTES FOR SELECTS
+    let selects = div.querySelectorAll('select')
+    for(let i=0; i<selects.length; i++) {
+      let select = selects[i]
+      select.setAttribute('name', select.name.replace('NEW_RECORD', index))
+      select.setAttribute('id', select.id.replace('NEW_RECORD', index))
+      let options = select.querySelectorAll('option')
+      for (let i=0;i<options.length;i++) {
+        let option = options[i]
+        option.removeAttribute('selected')
+      }
+      let option = document.createElement('option');
+      option.value = ''
+      option.innerHTML = 'Select Lift'
+      option.selected = true
+      select.prepend(option)
+    }
+
     // SET NEW ATTRIBUTES FOR INPUTS
-    for(let i=0; i<div.querySelectorAll('input').length; i++) {
-      let input = div.querySelectorAll('input')[i]
+    let inputs = div.querySelectorAll('input')
+    for(let i=0; i<inputs.length; i++) {
+      let input = inputs[i]
       input.setAttribute('name', input.name.replace('NEW_RECORD', index))
       input.setAttribute('id', input.id.replace('NEW_RECORD', index))
+      input.setAttribute('value', '')
     }
     document.getElementById('lifts').appendChild(div);
   }
@@ -71,7 +91,7 @@ export default class extends Controller {
 
       // SET WORKOUT LIFTS INDEX
       input.setAttribute('name', input.name.replace('[workout_lifts_attributes][NEW_RECORD]', `[workout_lifts_attributes][${liftId}]`))
-      input.setAttribute('id', input.name.replace('workout_lifts_attributes_NEW_RECORD', `workout_lifts_attributes_${liftId}`))
+      input.setAttribute('id', input.id.replace('workout_lifts_attributes_NEW_RECORD', `workout_lifts_attributes_${liftId}`))
       // SET CURRENT INDEX OF SET
       input.setAttribute('name', input.name.replace('NEW_RECORD', `${index}`))
       input.setAttribute('id', input.id.replace('NEW_RECORD', `${index}`))
