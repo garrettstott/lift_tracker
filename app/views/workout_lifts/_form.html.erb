@@ -7,7 +7,7 @@
   </div>
 
   <template data-nested-form-target="setTemplate">
-    <%= form.fields_for :lift_sets, form.object.lift_sets.first, child_index: 'NEW_RECORD' do |lift_set_form| %>
+    <%= form.fields_for :lift_sets, LiftSet.new, child_index: 'NEW_RECORD' do |lift_set_form| %>
       <%= render partial: 'lift_sets/form', locals: { form: lift_set_form } %>
     <% end %>
   </template>

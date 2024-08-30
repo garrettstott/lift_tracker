@@ -55,6 +55,6 @@ class Workout < ApplicationRecord
   end
 
   def nice_completed_at
-    completed_at.in_time_zone('MST').strftime("%m/%d/%Y at %I:%M%p")
+    completed_at.in_time_zone("MST").strftime("%m/%d/%Y at %I:%M%p")
   end
 end

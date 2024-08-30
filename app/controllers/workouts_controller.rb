@@ -63,8 +63,8 @@ class WorkoutsController < ApplicationController
       @workout.workout_lifts = @last_workout.workout_lifts.map { |wl| wl.dup }
       # @workout.workout_lifts.each { |wl| wl.lift_sets << copy.workout_lifts.where(lift_id: wl.lift_id).last.lift_sets.last.dup }
     else
-      @workout.workout_lifts.build
+      # @workout.workout_lifts.build
     end
-    @workout.workout_lifts.each { |wl| wl.lift_sets.build }
+    # @workout.workout_lifts.each { |wl| wl.lift_sets.build }
   end
 end
