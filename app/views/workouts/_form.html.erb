@@ -12,7 +12,7 @@
       <h3>Lifts</h3>
 
       <template data-nested-form-target="liftTemplate">
-        <%= workout_form.fields_for :workout_lifts, workout_form.object.workout_lifts.last || workout_form.object.workout_lifts.new, child_index: 'NEW_RECORD' do |workout_lift_form| %>
+        <%= workout_form.fields_for :workout_lifts, WorkoutLift.new, child_index: 'NEW_RECORD' do |workout_lift_form| %>
           <%= render "workout_lifts/form", form: workout_lift_form %>
         <% end %>
       </template>

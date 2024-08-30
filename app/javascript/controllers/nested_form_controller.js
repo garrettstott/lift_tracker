@@ -77,6 +77,8 @@ export default class extends Controller {
     let liftSetsDiv = document.getElementById(`${liftId}-lift-sets`)
     // GET CURRENT SETS
     let sets = liftSetsDiv.getElementsByClassName(`lift-set`)
+    // GET ALL LIFTS
+    let workoutLifts = document.getElementsByClassName(`workout-lift`)
     // SET INDEX
     let index = sets.length
     // GET INPUTS
@@ -89,12 +91,17 @@ export default class extends Controller {
         value = sets[index - 1].lastElementChild.querySelector('input').value
       }
 
+
+      console.log(liftId)
       // SET WORKOUT LIFTS INDEX
       input.setAttribute('name', input.name.replace('[workout_lifts_attributes][NEW_RECORD]', `[workout_lifts_attributes][${liftId}]`))
       input.setAttribute('id', input.id.replace('workout_lifts_attributes_NEW_RECORD', `workout_lifts_attributes_${liftId}`))
+      input.setAttribute('name', input.name.replace('[workout_lifts_attributes][0]', `[workout_lifts_attributes][${liftId}]`))
+      input.setAttribute('id', input.id.replace('workout_lifts_attributes_0', `workout_lifts_attributes_${liftId}`))
       // SET CURRENT INDEX OF SET
       input.setAttribute('name', input.name.replace('NEW_RECORD', `${index}`))
       input.setAttribute('id', input.id.replace('NEW_RECORD', `${index}`))
+      console.log(input.name)
       input.classList.remove('reps-normal')
       input.classList.remove('reps-super-set')
       // SET VALUES BASED ON INPUT
