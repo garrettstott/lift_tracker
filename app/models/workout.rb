@@ -64,7 +64,7 @@ class Workout < ApplicationRecord
     if self.completed_at.nil?
       self.completed_at = Time.now.in_time_zone("MST")
     else
-      Time.at(self.completed_at).in_time_zone("MST")
+      Time.at(self.completed_at + 12.hours).in_time_zone("MST")
     end
   end
 
