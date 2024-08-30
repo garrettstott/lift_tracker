@@ -57,7 +57,12 @@ class WorkoutsController < ApplicationController
   end
 
   def build_workout
-    @workout = Workout.next_workout
+    if params[:style]
+      @workout = Workout.new(style: params[:style])
+    else
+      @workout = Workout.new
+    end
+
     @last_workout = Workout.where(style: @workout.style).first
     if @last_workout
       @workout.workout_lifts = @last_workout.workout_lifts.map { |wl| wl.dup }
