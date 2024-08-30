@@ -19,7 +19,7 @@
         <h5>Lift</h5>
       </div>
       <div class="flex flex-4">
-        <% @last_workout.workout_lifts.find_by(lift_id: form.object.lift_id).lift_sets.each do |last_lift_set| %>
+        <% @last_workout.workout_lifts.find_by(lift_id: form.object.lift_id)&.lift_sets&.each do |last_lift_set| %>
           <%= render partial: 'lift_sets/show', locals: { lift_set: last_lift_set } %>
         <% end %>
       </div>

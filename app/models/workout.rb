@@ -29,7 +29,7 @@ class Workout < ApplicationRecord
 
   default_scope -> { order(completed_at: :desc) }
 
-  before_validation -> { self.completed_at = DateTime.now.in_time_zone("MST") if self.completed_at.nil? }
+  before_validation :set_completed_at
 
   class << self
 
@@ -57,4 +57,13 @@ class Workout < ApplicationRecord
   def nice_completed_at
     completed_at.in_time_zone("MST").strftime("%m/%d/%Y at %I:%M%p")
   end
+
+  private
+
+  def set_completed_at
+    if self.completed_at.nil?
+      self.completed_at = Time.now.in_time_zone("MST")
+    end
+  end
+
 end
