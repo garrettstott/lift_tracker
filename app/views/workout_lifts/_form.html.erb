@@ -13,7 +13,7 @@
     <% end %>
   </template>
 
-  <% if @last_workout %>
+  <% if @last_workout && @last_workout.workout_lifts.pluck(:lift_id).include?(form.object.lift_id) %>
     <div class="flex mb-16">
       <div class="flex flex-1 flex-column space-around me-8">
         <h5>Last</h5>
