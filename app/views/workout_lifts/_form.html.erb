@@ -3,7 +3,7 @@
   <%= form.hidden_field :workout_id, value: form.object.workout_id %>
 
   <div class="flex">
-    <%= form.select :lift_id, Lift.all.pluck(:name, :id), selected: form.object.lift_id, prompt: 'Select Lift' %>
+    <%= form.select :lift_id, Lift.all.pluck(:name, :id), {}, data: { index: form.index, action: "change->nested-form#changeLift" }, selected: form.object.lift_id, prompt: 'Select Lift' %>
     <a href="#" id='remove-lift' class="x" data-index="<%= form.index %>" data-action="nested-form#removeLift">X</a>
   </div>
 
@@ -14,7 +14,7 @@
   </template>
 
   <% if @last_workout && @last_workout.workout_lifts.pluck(:lift_id).include?(form.object.lift_id) %>
-    <div class="flex mb-16">
+    <div class="last-lift flex mb-16">
       <div class="flex flex-1 flex-column space-around me-8">
         <h5>Last</h5>
         <h5>Lift</h5>

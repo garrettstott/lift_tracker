@@ -78,6 +78,7 @@ export default class extends Controller {
       let select = selects[i]
       select.setAttribute('name', select.name.replace('NEW_RECORD', index))
       select.setAttribute('id', select.id.replace('NEW_RECORD', index))
+      select.setAttribute('data-index', index)
       let options = select.querySelectorAll('option')
       for (let i=0;i<options.length;i++) {
         let option = options[i]
@@ -168,5 +169,10 @@ export default class extends Controller {
       }
     }
     liftSetsDiv.appendChild(div);
+  }
+
+  changeLift(e) {
+    let workoutLift = document.getElementById(`${e.target.dataset.index}-workout-lift`)
+    workoutLift.querySelector('.last-lift').remove()
   }
 }
