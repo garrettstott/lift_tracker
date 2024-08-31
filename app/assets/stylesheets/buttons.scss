@@ -15,3 +15,14 @@
 .button {
   padding: 6px 10px;
 }
+
+.button-highlight {
+  background: $blue;
+  color: $black !important;
+}
+
+.button-danger {
+  background: $red;
+  border: $red;
+  color: $white !important;
+}

@@ -8,6 +8,39 @@ export default class extends Controller {
   connect() {
   }
 
+  removeLift(e) {
+    let index = e.target.dataset.index
+    let workoutLift = document.getElementById(`${index}-workout-lift`)
+    let input = workoutLift.querySelector(`input[name='workout[workout_lifts_attributes][${index}][id]']`);
+    if ( input && input.value ) {
+      workoutLift.classList.add('hidden')
+      let destroy = document.createElement('input')
+      destroy.setAttribute('name', `workout[workout_lifts_attributes][${index}][_destroy]`)
+      destroy.setAttribute('value', '1')
+      workoutLift.appendChild(destroy)
+    } else {
+      workoutLift.remove()
+    }
+  }
+
+  removeSet(e) {
+    let liftIndex = e.target.dataset.index
+    let liftSetsContainer = document.getElementById(`${liftIndex}-lift-sets`)
+    let liftSets = liftSetsContainer.querySelectorAll(('.lift-set'))
+    let lastLift = liftSets[liftSets.length - 1]
+    let input = lastLift.querySelector(`input[name='workout[workout_lifts_attributes][${liftIndex}][lift_sets_attributes][${liftSets.length - 1}][id]']`);
+    let removeLink = document.getElementById(`remove-set-${liftIndex}`)
+    if ( input && input.value ) {
+      lastLift.classList.add('hidden')
+      let destroy = document.createElement('input')
+      destroy.setAttribute('name', `workout[workout_lifts_attributes][${liftIndex}][lift_sets_attributes][${liftSets.length - 1}][_destroy]`)
+      destroy.setAttribute('value', '1')
+      lastLift.appendChild(destroy)
+    } else {
+      lastLift.remove()
+    }
+  }
+
   addLift() {
     // GET TEMPLATE
     let clone = document.importNode(this.liftTemplateTarget.content,true);
@@ -17,16 +50,26 @@ export default class extends Controller {
     let lifts = document.getElementsByClassName('workout-lift');
     // GET ALL LIFT SETS IN CONTENT
     let liftSetsDiv = div.querySelector('#NEW_RECORD-lift-sets')
+    // GET REMOVE LINK
+    let removeLift = div.querySelector('#remove-lift')
     // SET INDEX
     let index = lifts.length;
+    // SET WORKOUT LIFT ID
+    div.setAttribute('id', div.id.replace('NEW_RECORD', index))
     // SET NEW ID
     liftSetsDiv.setAttribute('id', `${index}-lift-sets`)
+    // SET REMOVE LINK INDEX
+    removeLift.setAttribute('data-index', index)
     // GET THE ADD REPS BUTTONS
     let buttons = div.querySelectorAll('.button')
 
     // SET VALUE FOR BUTTONS - ONCLICK
     for(let i=0; i<buttons.length; i++) {
-      buttons[i].setAttribute('value', index)
+      let button = buttons[i]
+      button.setAttribute('value', index)
+      if ( button.id.includes('remove-set') ) {
+        button.setAttribute('id', `remove-set-${index}`)
+      }
     }
 
     // SET NEW ATTRIBUTES FOR SELECTS
@@ -77,22 +120,30 @@ export default class extends Controller {
     let liftSetsDiv = document.getElementById(`${liftId}-lift-sets`)
     // GET CURRENT SETS
     let sets = liftSetsDiv.getElementsByClassName(`lift-set`)
-    // GET ALL LIFTS
-    let workoutLifts = document.getElementsByClassName(`workout-lift`)
     // SET INDEX
     let index = sets.length
     // GET INPUTS
     let inputs = div.querySelectorAll('input')
 
+    let removeLink = document.getElementById(`remove-set-${liftId}`)
+
+    if ( removeLink ) {
+      removeLink.classList.remove('hidden')
+    }
+
     for(let i=0; i<inputs.length; i++) {
       let input = inputs[i]
       let value = '';
       if (index > 0) {
-        value = sets[index - 1].lastElementChild.querySelector('input').value
+        let setInputs = sets[index - 1].querySelectorAll('input')
+        for(let i=0; i<setInputs.length; i++) {
+          let setInput = setInputs[i]
+          if ( setInput.name.includes('weight') ) {
+            value = setInput.value
+          }
+        }
       }
 
-
-      console.log(liftId)
       // SET WORKOUT LIFTS INDEX
       input.setAttribute('name', input.name.replace('[workout_lifts_attributes][NEW_RECORD]', `[workout_lifts_attributes][${liftId}]`))
       input.setAttribute('id', input.id.replace('workout_lifts_attributes_NEW_RECORD', `workout_lifts_attributes_${liftId}`))
@@ -101,7 +152,6 @@ export default class extends Controller {
       // SET CURRENT INDEX OF SET
       input.setAttribute('name', input.name.replace('NEW_RECORD', `${index}`))
       input.setAttribute('id', input.id.replace('NEW_RECORD', `${index}`))
-      console.log(input.name)
       input.classList.remove('reps-normal')
       input.classList.remove('reps-super-set')
       // SET VALUES BASED ON INPUT

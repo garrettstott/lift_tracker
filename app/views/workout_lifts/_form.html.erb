@@ -1,9 +1,10 @@
-<div class="workout-lift border-bottom mb-32 pb-32">
+<div id="<%= form.index %>-workout-lift" class="workout-lift border-bottom mb-32 pb-32">
   <%= form.hidden_field :id, value: form.object.id %>
   <%= form.hidden_field :workout_id, value: form.object.workout_id %>
 
-  <div class="flex flex-column">
+  <div class="flex">
     <%= form.select :lift_id, Lift.all.pluck(:name, :id), selected: form.object.lift_id, prompt: 'Select Lift' %>
+    <a href="#" id='remove-lift' class="x" data-index="<%= form.index %>" data-action="nested-form#removeLift">X</a>
   </div>
 
   <template data-nested-form-target="setTemplate">
@@ -39,6 +40,7 @@
   </div>
   <div>
     <button class="button" type="button" value="<%= form.options[:child_index] %>" data-action="nested-form#addSet">Add Set</button>
-    <button class="button" type="button" value="<%= form.options[:child_index] %>" data-action="nested-form#addSuperSet">Add Super Set</button>
+    <button class="button button-highlight" type="button" value="<%= form.options[:child_index] %>" data-action="nested-form#addSuperSet">Add Super Set</button>
+    <a href="#" class="button button-danger <%= form.object.lift_sets.any? ? '' : 'hidden' %>" id="remove-set-<%= form.options[:child_index] %>" data-index="<%= form.index %>" data-action="nested-form#removeSet">Remove Set</a>
   </div>
 </div>

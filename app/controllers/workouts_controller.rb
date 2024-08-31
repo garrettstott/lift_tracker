@@ -50,8 +50,8 @@ class WorkoutsController < ApplicationController
       :completed_at,
       :style,
       workout_lifts_attributes: [
-        :id, :lift_id, :workout_id,
-        lift_sets_attributes: [ :id, :weight, :reps, :workout_lift_id ]
+        :id, :lift_id, :workout_id, :_destroy,
+        lift_sets_attributes: [ :id, :weight, :reps, :workout_lift_id, :_destroy ]
       ],
     )
   end

@@ -11,7 +11,7 @@
     </div>
     <div class="mx-8">
       <% WORKOUT_DEFAULT_STYLES.each do |style| %>
-        <%= link_to "#{style.titleize}", new_workout_path(style: 'style'), class: 'button' %>
+        <%= link_to "#{style.titleize}", new_workout_path(style: style), class: 'button' %>
       <% end %>
       <%= link_to "Other", new_workout_path, class: 'button' %>
     </div>
