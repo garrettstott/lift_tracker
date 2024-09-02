@@ -4,7 +4,7 @@ class WorkoutsController < ApplicationController
 
   def index
     @next_workout = Workout.next_workout
-    @workouts = Workout.all.first(7)
+    @workouts = Workout.all.first(30)
   end
 
   def show
