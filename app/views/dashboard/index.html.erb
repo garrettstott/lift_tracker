@@ -1,0 +1,66 @@
+<div id="dashboard">
+  <h1 class="heading">Dashboard</h1>
+  <div id="calendar">
+    <%= month_calendar do |date| %>
+      <%= date.strftime('%m/%d/%Y') %>
+      <% date_workout = @workouts.where(completed_at: date.beginning_of_day..date.end_of_day) %>
+        <% date_workout.each do |workout| %>
+          <div class="workouts">
+            <h5><%= workout.style %></h5>
+          </div>
+        <% end %>
+    <% end %>
+  </div>
+  <div class="stats">
+    <div>
+      <h3>Chest Load</h3>
+      <div class="stat">
+        <%= line_chart @chest_stats, {
+            width: '98vw',
+            height: '300px',
+            # theme: 'dark',
+            class: 'chart-container-class',
+            # style: 'padding: 10px'
+          }
+        %>
+      </div>
+    </div>
+    <div>
+      <h3>Leg Load</h3>
+      <div class="stat">
+        <%= line_chart @leg_stats, {
+            width: '98vw',
+            height: '300px',
+            # theme: 'dark',
+            class: 'chart-container-class',
+            # style: 'padding: 10px'
+          }
+        %>
+      </div>
+    </div>
+    <div>
+      <h3>Arm Load</h3>
+      <div class="stat">
+        <%= line_chart @arm_stats, {
+            width: '98vw',
+            # theme: 'dark',
+            class: 'chart-container-class',
+            # style: 'padding: 10px'
+          }
+        %>
+      </div>
+    </div>
+    <div>
+      <h3>Back Load</h3>
+      <div class="stat">
+        <%= line_chart @back_stats, {
+            width: '98vw',
+            # theme: 'dark',
+            class: 'chart-container-class',
+            # style: 'padding: 10px'
+          }
+        %>
+      </div>
+    </div>
+  </div>
+</div>

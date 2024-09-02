@@ -16,4 +16,9 @@ Rails.application.routes.draw do
   resources :workouts
   resources :lifts
   resources :workout_lifts, only: [:new]
+  resources :dashboard, only: [:index] do
+    collection do
+      get :chest_stats, as: :chest_stats
+    end
+  end
 end

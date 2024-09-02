@@ -1,6 +1,8 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
+import "echarts"
+import "echarts/theme/dark"
 
 document.addEventListener("DOMContentLoaded", function() {
   document.addEventListener('click', e => {
@@ -16,4 +18,3 @@ window.toggleMenu = function toggleMenu(e) {
     menu.classList.add('hidden')
   }
 }
-

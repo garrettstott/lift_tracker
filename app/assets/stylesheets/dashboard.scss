@@ -1,0 +1,43 @@
+#dashboard {
+  .simple-calendar .prev-month, .simple-calendar .next-month {
+    background: transparent;
+    color: transparent;
+    .workouts {
+      background: transparent;
+      color: transparent;
+    }
+  }
+
+  .simple-calendar table {
+    margin: 16px 0;
+    table-layout: fixed;
+    width: 98%;
+  }
+
+  .simple-calendar .today {
+    background: transparent;
+    color: $blue;
+  }
+
+  .simple-calendar .workouts {
+    background: $pink;
+    color: $white;
+  }
+
+  .stats {
+    .stat {
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .simple-calendar table {
+    font-size: 0.2em;
+    th, td {
+      padding: 2px;
+    }
+  }
+  .simple-calendar .day {
+    height: 50px;
+  }
+}

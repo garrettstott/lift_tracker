@@ -53,7 +53,15 @@ export default class extends Controller {
     // GET REMOVE LINK
     let removeLift = div.querySelector('#remove-lift')
     // SET INDEX
-    let index = lifts.length;
+    let index;
+    let times = 100;
+    for (let a=0; a<times;a++) {
+      let input = document.getElementById(`workout_workout_lifts_attributes_${a}_id`)
+      if ( !input ) {
+        index = a
+        break
+      }
+    }
     // SET WORKOUT LIFT ID
     div.setAttribute('id', div.id.replace('NEW_RECORD', index))
     // SET NEW ID

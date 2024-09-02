@@ -1,5 +1,6 @@
 @import 'colors';
 @import 'normalize';
+@import "simple_calendar";
 @import 'typography';
 @import 'navbar';
 @import 'forms';
@@ -8,6 +9,7 @@
 @import 'flex';
 @import 'buttons';
 @import 'flash';
+@import 'dashboard';
 
 .reps-super-set {
   background: $pink;

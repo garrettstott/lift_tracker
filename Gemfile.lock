@@ -193,6 +193,8 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
+    rails_charts (0.0.6)
+      rails
     railties (7.2.1)
       actionpack (= 7.2.1)
       activesupport (= 7.2.1)
@@ -258,6 +260,8 @@ GEM
       sprockets-rails
       tilt
     securerandom (0.3.1)
+    simple_calendar (3.0.4)
+      rails (>= 6.1)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -311,9 +315,11 @@ DEPENDENCIES
   pry
   puma (>= 5.0)
   rails (~> 7.2.1)
+  rails_charts
   redis (>= 4.0.1)
   rubocop-rails-omakase
   sass-rails
+  simple_calendar
   sprockets-rails
   stimulus-rails
   turbo-rails
