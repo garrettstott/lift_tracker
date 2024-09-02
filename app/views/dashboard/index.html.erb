@@ -2,7 +2,7 @@
   <h1 class="heading">Dashboard</h1>
   <div id="calendar">
     <%= month_calendar do |date| %>
-      <%= date.strftime('%m/%d/%Y') %>
+      <%= date.strftime('%d') %>
       <% date_workout = @workouts.where(completed_at: date.beginning_of_day..date.end_of_day) %>
         <% date_workout.each do |workout| %>
           <div class="workouts">
