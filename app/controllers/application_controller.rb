@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
   private
 
   def set_time_zone
-    Time.zone = 'MST'
+    Time.zone = "Mountain Time (US & Canada)"
   end
 end
