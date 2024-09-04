@@ -1,8 +1,12 @@
 <div class="lift-set">
 
   <div class="flex flex-column">
-    <%= form.number_field :weight, value: form.object.weight, class: "xs-input flex-1 reps-#{form.object.style.gsub(' ', '-')}" %>
-    <%= form.number_field :reps, value: form.object.reps, class: "xs-input flex-1 reps-#{form.object.style.gsub(' ', '-')}" %>
+    <%= form.number_field :weight, value: form.object.weight,
+                          input_mode: "numeric",
+                          pattern: "[0-9]*", class: "xs-input flex-1 reps-#{form.object.style.gsub(' ', '-')}" %>
+    <%= form.number_field :reps, value: form.object.reps,
+                          input_mode: "numeric",
+                          pattern: "[0-9]*", class: "xs-input flex-1 reps-#{form.object.style.gsub(' ', '-')}" %>
     <%= form.hidden_field :style, value: form.object.style %>
     <%= form.hidden_field :id, value: form.object.id %>
   </div>
