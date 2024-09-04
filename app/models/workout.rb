@@ -63,7 +63,9 @@ class Workout < ApplicationRecord
 
   def set_completed_at
     if self.completed_at.nil?
-      self.completed_at = DateTime.now
+      self.completed_at = Time.now.in_time_zone("MST")
+    else
+      self.completed_at = self.completed_at.in_time_zone("MST")
     end
   end
 
