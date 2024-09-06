@@ -140,6 +140,9 @@ export default class extends Controller {
       removeLink.classList.remove('hidden')
     }
 
+    let weightInput;
+    let repInput;
+
     for(let i=0; i<inputs.length; i++) {
       let input = inputs[i]
       let value = '';
@@ -165,6 +168,7 @@ export default class extends Controller {
       input.classList.remove('reps-super-set')
       // SET VALUES BASED ON INPUT
       if (input.name.includes('weight')) {
+        weightInput = input;
         input.setAttribute('value', value)
         input.classList.add(`reps-${style.replace(' ', '-')}`)
       } else if ( input.name.includes('style') ) {
@@ -172,11 +176,19 @@ export default class extends Controller {
       } else if ( input.name.includes('reps') ) {
         input.setAttribute('value', '')
         input.classList.add(`reps-${style.replace(' ', '-')}`)
+        repInput = input;
       } else if ( input.name.includes('[id]') ) {
         input.value = ''
       }
     }
-    liftSetsDiv.appendChild(div);
+
+    liftSetsDiv.appendChild(div)
+
+    if ( index === 0 ) {
+      weightInput.focus()
+    } else {
+      repInput.focus()
+    }
   }
 
   changeLift(e) {
