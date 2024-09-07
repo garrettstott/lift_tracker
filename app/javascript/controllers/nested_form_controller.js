@@ -25,11 +25,17 @@ export default class extends Controller {
 
   removeSet(e) {
     let liftIndex = e.target.dataset.index
+    console.log(liftIndex)
     let liftSetsContainer = document.getElementById(`${liftIndex}-lift-sets`)
+    console.log(liftSetsContainer)
     let liftSets = liftSetsContainer.querySelectorAll(('.lift-set'))
+    console.log(liftSets)
     let lastLift = liftSets[liftSets.length - 1]
+    console.log(lastLift)
     let input = lastLift.querySelector(`input[name='workout[workout_lifts_attributes][${liftIndex}][lift_sets_attributes][${liftSets.length - 1}][id]']`);
+    console.log(input)
     let removeLink = document.getElementById(`remove-set-${liftIndex}`)
+    console.log(removeLink)
     if ( input && input.value ) {
       lastLift.classList.add('hidden')
       let destroy = document.createElement('input')
@@ -46,8 +52,6 @@ export default class extends Controller {
     let clone = document.importNode(this.liftTemplateTarget.content,true);
     // GET CONTENT IN TEMPLATE
     let div = clone.querySelector('div')
-    // GET ALL THE LIFTS
-    let lifts = document.getElementsByClassName('workout-lift');
     // GET ALL LIFT SETS IN CONTENT
     let liftSetsDiv = div.querySelector('#NEW_RECORD-lift-sets')
     // GET REMOVE LINK
@@ -77,6 +81,7 @@ export default class extends Controller {
       button.setAttribute('value', index)
       if ( button.id.includes('remove-set') ) {
         button.setAttribute('id', `remove-set-${index}`)
+        button.setAttribute('data-index', index)
       }
     }
 
