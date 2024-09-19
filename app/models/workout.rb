@@ -23,7 +23,7 @@ class Workout < ApplicationRecord
 
   belongs_to :user
 
-  has_many :workout_lifts
+  has_many :workout_lifts, dependent: :destroy
 
   accepts_nested_attributes_for :workout_lifts, reject_if: :all_blank, allow_destroy: true
 

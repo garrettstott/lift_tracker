@@ -21,8 +21,14 @@
   color: $black !important;
 }
 
-.button-danger {
+.button-danger:hover {
   background: $red;
-  border: $red;
+  border: 1px solid $red;
   color: $white !important;
+}
+
+.button-danger {
+  background: $black;
+  border: 1px solid $red;
+  color: $red !important;
 }

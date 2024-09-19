@@ -1,6 +1,6 @@
 <div>
   <h1 class="heading">Workout</h1>
-  <%= form_for @workout, data: { turbo: false, controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |workout_form| %>
+  <%= form_for @workout, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |workout_form| %>
     <%= workout_form.hidden_field :id, value: workout_form.object.id %>
 
     <div class="flex flex-column border-bottom mb-16">
@@ -8,7 +8,7 @@
       <%= workout_form.date_field :completed_at, value: (workout_form.object.completed_at|| DateTime.now) %>
     </div>
 
-    <div>
+    <div class="mb-32">
       <h3>Lifts</h3>
 
       <template data-nested-form-target="liftTemplate">
@@ -29,6 +29,9 @@
 
     <div>
       <%= workout_form.submit 'Save', class: 'button float-right' %>
+      <% if @workout.id %>
+        <%= button_to 'Delete', workout_path(@workout), method: :delete, class: 'me-8 button button-danger float-right', data: { turbo_confirm: 'Are you sure?'} %>
+      <% end %>
     </div>
   <% end %>
 </div>
