@@ -28,10 +28,10 @@
     </div>
 
     <div>
-      <%= workout_form.submit 'Save', class: 'button float-right' %>
-      <% if @workout.id %>
-        <%= button_to 'Delete', workout_path(@workout), method: :delete, class: 'me-8 button button-danger float-right', data: { turbo_confirm: 'Are you sure?'} %>
-      <% end %>
+      <%= workout_form.submit 'Save', class: 'button', style: 'width:100%' %>
     </div>
+  <% end %>
+  <% if @workout.id %>
+    <%= button_to 'Delete', workout_path(@workout), method: :delete, class: 'me-8 button button-danger float-right', data: { turbo_confirm: 'Are you sure?'} %>
   <% end %>
 </div>
