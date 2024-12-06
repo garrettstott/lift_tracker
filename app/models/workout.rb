@@ -44,15 +44,6 @@ class Workout < ApplicationRecord
     def by_date(days:)
       Workout.where("completed_at > ?", days.days.ago)
     end
-
-    def next_workout
-      last_workout = self.first
-      return Workout.create(style: WORKOUT_DEFAULT_STYLES.first) if last_workout.nil?
-      last_index = WORKOUT_DEFAULT_STYLES.find_index(last_workout.style)
-      next_style = WORKOUT_DEFAULT_STYLES[last_index + 1] if last_index
-      next_style = WORKOUT_DEFAULT_STYLES.first if next_style.nil?
-      Workout.where(style: next_style).last.dup || Workout.new(style: next_style)
-    end
   end
 
   def nice_completed_at

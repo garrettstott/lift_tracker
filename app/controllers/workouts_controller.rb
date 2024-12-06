@@ -3,8 +3,8 @@ class WorkoutsController < ApplicationController
   before_action :build_workout, only: [:new]
 
   def index
-    @next_workout = Workout.next_workout
-    @workouts = Workout.all.first(30)
+    @next_workout = current_user.next_workout
+    @workouts = current_user.workouts.first(30)
   end
 
   def show

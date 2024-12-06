@@ -9,7 +9,7 @@ class DashboardController < ApplicationController
       beginning_of_month = DateTime.now.beginning_of_month
       end_of_month = DateTime.now.end_of_month
     end
-    @workouts = Workout.where(completed_at: beginning_of_month..end_of_month)
+    @workouts = current_user.workouts.where(completed_at: beginning_of_month..end_of_month)
     @chest_stats = chest_loads
     @leg_stats = leg_loads
     @arm_stats = arm_loads

@@ -18,6 +18,7 @@
   </div>
   <div>
     <% @workouts.each do |workout| %>
+      <% next if workout.id.nil? %>
       <div class="card mb-16">
         <div class="card-header">
           <%= link_to workout.style.titleize, edit_workout_path(workout) %>

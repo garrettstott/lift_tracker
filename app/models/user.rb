@@ -24,4 +24,13 @@ class User < ApplicationRecord
 
   before_validation -> { self.errors.add("base", "I don't think so Tim") if User.all.size >= 1 }
   has_many :workouts
+
+  def next_workout
+    last_workout = self.workouts.first
+    return self.workouts.new(style: WORKOUT_DEFAULT_STYLES.first) if last_workout.nil?
+    last_index = WORKOUT_DEFAULT_STYLES.find_index(last_workout.style)
+    next_style = WORKOUT_DEFAULT_STYLES[last_index + 1] if last_index
+    next_style = WORKOUT_DEFAULT_STYLES.first if next_style.nil?
+    self.workouts.where(style: next_style).last.dup || self.workouts.new(style: next_style)
+  end
 end
