@@ -19,7 +19,11 @@ module LoadableConcern
 
   def load_by_style(style:)
     workout_loads = []
-    current_user.workouts.unscope(:order).order(completed_at: :asc).where("LOWER(style) LIKE ?", "%#{style}%").each do |workout|
+    current_user.
+      workouts.
+      unscope(:order).
+      order(completed_at: :asc).
+      where("LOWER(style) LIKE ?", "%#{style}%").each do |workout|
       total_load = 0
       workout_date = workout.completed_at.strftime('%m/%d/%Y')
       workout.workout_lifts.each do |workout_lift|

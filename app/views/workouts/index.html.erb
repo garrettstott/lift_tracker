@@ -3,10 +3,10 @@
   <div class="mb-16">
     <div class="mb-16">
       <div>
-        Last 7 Days <%= Workout.last_7_days.size %>
+        Last 7 Days <%= Workout.last_7_days(current_user.id).size %>
       </div>
       <div>
-        Last 30 Days <%= Workout.last_30_days.size %>
+        Last 30 Days <%= Workout.last_30_days(current_user.id).size %>
       </div>
     </div>
     <div class="mx-8">

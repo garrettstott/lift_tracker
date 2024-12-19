@@ -66,7 +66,7 @@ class WorkoutsController < ApplicationController
       @workout = Workout.new
     end
 
-    @last_workout = Workout.where(style: @workout.style).first
+    @last_workout = Workout.where(style: @workout.style, user_id: current_user.id).first
     if @last_workout
       @workout.workout_lifts = @last_workout.workout_lifts.map { |wl| wl.dup }
     end

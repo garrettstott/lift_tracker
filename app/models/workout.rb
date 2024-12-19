@@ -33,16 +33,18 @@ class Workout < ApplicationRecord
 
   class << self
 
-    def last_7_days
-      by_date(days: 7)
+    def last_7_days(user_id)
+      by_date(days: 7, user_id: user_id)
     end
 
-    def last_30_days
-      by_date(days: 30)
+    def last_30_days(user_id)
+      by_date(days: 30, user_id: user_id)
     end
 
-    def by_date(days:)
-      Workout.where("completed_at > ?", days.days.ago)
+    def by_date(days:, user_id:)
+      Workout.
+        where("completed_at > ?", days.days.ago).
+        where(user_id: user_id)
     end
   end
 
