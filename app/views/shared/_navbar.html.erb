@@ -27,9 +27,15 @@
 <div id='nav-menu' class="hidden">
   <div class="header">
     <% if user_signed_in? %>
-      <div><%= link_to 'Workouts', workouts_path %></div>
-      <div><%= link_to 'Lifts', lifts_path %></div>
-      <div><%= link_to 'Dashboard', dashboard_index_path %></div>
+      <%= link_to workouts_path do %>
+        <div>Workouts</div>
+      <% end %>
+      <%= link_to lifts_path do %>
+        <div>Lifts</div>
+      <% end %>
+      <%= link_to dashboard_index_path do %>
+        <div>Dashboard</div>
+      <% end %>
     <% end %>
   </div>
   <div class="body">
