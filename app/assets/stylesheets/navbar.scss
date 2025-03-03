@@ -8,6 +8,7 @@
   top: 0;
   left: 0;
   width: calc(100% - 16px);
+  z-index: 5;
   div {
     display: flex;
   }
@@ -45,6 +46,7 @@
   background: $pink;
   padding: 16px;
   width: calc(100% - 32px);
+  z-index: 5;
   a {
     color: $blue;
   }

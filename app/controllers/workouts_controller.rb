@@ -33,7 +33,7 @@ class WorkoutsController < ApplicationController
     @workout = current_user.workouts.new(workout_params)
     if @workout.save
       flash[:success] = "Workout Created"
-      redirect_to workouts_path
+      redirect_to dashboard_index_path
     else
       flash[:error] = @workout.errors.full_messages.to_sentence
       render :edit
