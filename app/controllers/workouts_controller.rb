@@ -1,4 +1,5 @@
 class WorkoutsController < ApplicationController
+  include LoadableConcern
 
   before_action :build_workout, only: [:new]
 
@@ -8,7 +9,27 @@ class WorkoutsController < ApplicationController
   end
 
   def show
-    redirect_to edit_workout_path(id: params[:id])
+    @workout = Workout.find(params[:id])
+    if params[:start_date]
+      beginning_of_month = DateTime.parse(params[:start_date]).beginning_of_month
+      end_of_month = DateTime.parse(params[:start_date]).end_of_month
+    else
+      beginning_of_month = DateTime.now.beginning_of_month
+      end_of_month = DateTime.now.end_of_month
+    end
+    @workouts = current_user.workouts.where(completed_at: beginning_of_month..end_of_month)
+    case @workout.style
+    when "chest"
+      @workout_stats = chest_loads
+    when "legs"
+      @workout_stats = leg_loads
+    when "arms"
+      @workout_stats = arm_loads
+    when "back"
+      @workout_stats = back_loads
+    else
+      @workout_stats = []
+    end
   end
 
   def edit
@@ -19,7 +40,7 @@ class WorkoutsController < ApplicationController
     @workout = Workout.find(params[:id])
     if @workout.update(workout_params)
       flash[:success] = "Workout Updated"
-      redirect_to workouts_path
+      redirect_to workout_path(@workout)
     else
       flash[:error] = @workout.errors.full_messages.to_sentence
       render "edit"
@@ -33,7 +54,7 @@ class WorkoutsController < ApplicationController
     @workout = current_user.workouts.new(workout_params)
     if @workout.save
       flash[:success] = "Workout Created"
-      redirect_to dashboard_index_path
+      redirect_to workout_path(@workout)
     else
       flash[:error] = @workout.errors.full_messages.to_sentence
       render :edit

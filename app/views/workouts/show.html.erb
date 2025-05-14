@@ -1,0 +1,57 @@
+<div class="container">
+  <div>
+    <h1 class="heading"><%= @workout.style.titleize %> Workout</h1>
+    <div class="card mb-16">
+      <div class="card-header">
+        <%= link_to @workout.style.titleize, edit_workout_path(@workout) %>
+        <%= @workout.nice_completed_at %>
+      </div>
+      <div class="card-body">
+        <% @workout.workout_lifts.each do |workout_lift| %>
+          <div class="mb-4 flex space-between mb-8">
+            <div class="flex">
+              <div class="margin-auto-y"><%= workout_lift.lift.name.titleize %></div>
+            </div>
+            <div class="flex space-between">
+              <% workout_lift.lift_sets.each do |lift_set| %>
+                <%= render partial: 'lift_sets/show', locals: { lift_set: lift_set } %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="card-footer">
+        <%= link_to 'Edit', edit_workout_path(@workout), class: 'button' %>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="dashboard">
+  <div id="calendar">
+    <%= month_calendar do |date| %>
+      <%= date.strftime('%d') %>
+      <% date_workout = @workouts.where(completed_at: date.beginning_of_day..date.end_of_day) %>
+      <% date_workout.each do |workout| %>
+        <div class="workouts">
+          <h5><%= workout.style %></h5>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="stats">
+    <div>
+      <h3><%= @workout.style %>> Load</h3>
+      <div class="stat">
+        <%= line_chart @workout_stats, {
+          width: '98vw',
+          height: '300px',
+          # theme: 'dark',
+          class: 'chart-container-class',
+          # style: 'padding: 10px'
+        }
+        %>
+      </div>
+    </div>
+  </div>
+</div>
