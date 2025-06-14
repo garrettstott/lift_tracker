@@ -39,8 +39,29 @@
     </div>
   </div>
   <div>
-    <button class="button" type="button" value="<%= form.options[:child_index] %>" data-action="nested-form#addSet">Add Set</button>
-    <button class="button button-highlight" type="button" value="<%= form.options[:child_index] %>" data-action="nested-form#addSuperSet">Add Super Set</button>
-    <a href="#" class="button button-danger <%= form.object.lift_sets.any? ? '' : 'hidden' %>" id="remove-set-<%= form.options[:child_index] %>" data-index="<%= form.index %>" data-action="nested-form#removeSet">Remove Set</a>
+    <button
+      class="button"
+      type="button"
+      value="<%= form.options[:child_index] %>"
+      data-action="nested-form#addSet">
+      <strong>+</strong>
+      Set
+    </button>
+    <button
+      class="button button-highlight"
+      type="button"
+      value="<%= form.options[:child_index] %>"
+      data-action="nested-form#addSuperSet">
+      <strong>+</strong>
+      Super Set
+    </button>
+    <a
+      href="#"
+      class="button button-danger <%= form.object.lift_sets.any? ? '' : 'hidden' %>"
+      id="remove-set-<%= form.options[:child_index] %>"
+      data-index="<%= form.index %>"
+      data-action="nested-form#removeSet">
+      Remove Set
+    </a>
   </div>
 </div>

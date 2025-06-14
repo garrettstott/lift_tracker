@@ -41,7 +41,7 @@
 
   <div class="stats">
     <div>
-      <h3><%= @workout.style %>> Load</h3>
+      <h3><%= @workout.style.titleize %> Load</h3>
       <div class="stat">
         <%= line_chart @workout_stats, {
           width: '98vw',
